@@ -8,8 +8,8 @@
     "install-client": "npm install --perfix client",
     "install-server": "npm install --prefix server",
     "install": "npm run install-client && npm run install-server",
-    "client": "npm start --perfix client",
-    "server": "npm run watch --perfix server",
+    "client": "npm start --prefix client",
+    "server": "npm run watch --prefix server",
     "start": "npm run server & npm run client",
     "test": "npm run test --prefix server && npm run test --prefix client"
   },
