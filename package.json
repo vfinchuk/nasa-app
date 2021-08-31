@@ -1,0 +1,18 @@
+{
+  "name": "nasa-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "install-client": "npm install --perfix client",
+    "install-server": "npm install --prefix server",
+    "install": "npm run install-client && npm run install-server",
+    "client": "npm start --perfix client",
+    "server": "npm run watch --perfix server",
+    "start": "npm run server & npm run client",
+    "test": "npm run test --prefix server && npm run test --prefix client"
+  },
+  "keywords": [],
+  "author": ""
+}
