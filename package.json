@@ -8,9 +8,10 @@
     "install-client": "npm install --perfix client",
     "install-server": "npm install --prefix server",
     "install": "npm run install-client && npm run install-server",
-    "client": "npm start --perfix client",
-    "server": "npm run watch --perfix server",
-    "start": "npm run server & npm run client",
+    "client": "npm start --prefix client",
+    "server": "npm run watch --prefix server",
+    "watch": "npm run server & npm run client",
+    "deploy": "npm run build --prefix client && npm start --prefix server",
     "test": "npm run test --prefix server && npm run test --prefix client"
   },
   "keywords": [],
