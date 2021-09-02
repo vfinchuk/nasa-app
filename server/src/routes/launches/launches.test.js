@@ -65,3 +65,45 @@ describe('Test POST/launch', () => {
     });
   });
 });
+
+describe('Test DELETE/launch', () => {
+
+  const abortedLaunchDataWithoutDate = {
+    flightNumber: 100,
+    mission: 'Kepler exploration X',
+    rocket: 'Explorer IS1',
+    target: 'Kepler-442 b',
+    customers: ['NASA', 'ZTM'],
+    upcoming: false,
+    success: false,
+  }
+
+  const abortedLaunchData = {
+    ...abortedLaunchDataWithoutDate,
+    launchDate: 'December 27, 2030',
+  }
+
+  test('Is should response with 200 success', async () => {
+    const response = await request(app)
+      .delete(`/launches/${abortedLaunchData.flightNumber}`)
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    const responseDate = new Date(response.body.launchDate).valueOf();
+    const requestDate = new Date(abortedLaunchData.launchDate).valueOf();
+
+    expect(responseDate).toBe(requestDate);
+
+    expect(response.body).toMatchObject(abortedLaunchDataWithoutDate);
+  });
+
+  test('It should catch launch not found', async () => {
+    const response = await request(app)
+      .delete('/launches/:id')
+      .expect(404);
+
+    expect(response.body).toStrictEqual({
+      error: 'Launch not found'
+    })
+  });
+})
